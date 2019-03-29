@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<jpa:entity-mappings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:java="http://jcp.org/en/jsr/detail?id=270" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:jpa="http://java.sun.com/xml/ns/persistence/orm" v="5.2" status="GENERATED" persistenceUnitName="DEFAULT_PU" sm="false" id="_15521451005391" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm orm_2_1.xsd">
+    <jpa:entity abs="false" class="Uldshape" v="true" xre="false" m="false" rootElement="_15521451005391" id="_15521451033362">
+        <jpa:attributes>
+            <jpa:basic optional="false" attribute-type="String" v="true" am="PRIVATE" name="descr" jbt="false" id="_15521451036954">
+                <jpa:column name="DESCR" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic optional="false" attribute-type="String" v="true" am="PRIVATE" name="rating" jbt="false" id="_15521451037425">
+                <jpa:column name="RATING" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic optional="false" attribute-type="int" v="true" am="PRIVATE" name="maxgrosswght" jbt="false" id="_15521451037736">
+                <jpa:column name="MAXGROSSWGHT" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic optional="false" attribute-type="int" v="true" am="PRIVATE" name="tarewght" jbt="false" id="_15521451038057">
+                <jpa:column name="TAREWGHT" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic optional="false" attribute-type="int" v="true" am="PRIVATE" name="internalvolume" jbt="false" id="_15521451038058">
+                <jpa:column name="INTERNALVOLUME" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic optional="false" attribute-type="int" v="true" am="PRIVATE" name="intleng" jbt="false" id="_15521451038059">
+                <jpa:column name="INTLENG" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic optional="false" attribute-type="int" v="true" am="PRIVATE" name="intwdth" jbt="false" id="_155214510380510">
+                <jpa:column name="INTWDTH" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic optional="false" attribute-type="int" v="true" am="PRIVATE" name="inthght" jbt="false" id="_155214510380511">
+                <jpa:column name="INTHGHT" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic optional="false" attribute-type="int" v="true" am="PRIVATE" name="allleng" jbt="false" id="_155214510380512">
+                <jpa:column name="ALLLENG" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic optional="false" attribute-type="int" v="true" am="PRIVATE" name="allwdth" jbt="false" id="_155214510380513">
+                <jpa:column name="ALLWDTH" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic optional="false" attribute-type="int" v="true" am="PRIVATE" name="allhght" jbt="false" id="_155214510380514">
+                <jpa:column name="ALLHGHT" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic optional="false" attribute-type="String" v="true" am="PRIVATE" name="updtdttm" jbt="false" id="_155214510380515">
+                <jpa:column name="UPDTDTTM" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic optional="false" attribute-type="String" v="true" am="PRIVATE" name="updtuser" jbt="false" id="_155214510383616">
+                <jpa:column name="UPDTUSER" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic attribute-type="byte[]" v="true" am="PRIVATE" name="thumbnail" jbt="false" id="_155214510386717">
+                <jpa:column name="THUMBNAIL" unique="false" nullable="true" insertable="true" updatable="true" length="64000"/>
+                <jpa:lob/>
+            </jpa:basic>
+            <jpa:basic attribute-type="byte[]" v="true" am="PRIVATE" name="bigpic" jbt="false" id="_155214510386718">
+                <jpa:column name="BIGPIC" unique="false" nullable="true" insertable="true" updatable="true" length="128000"/>
+                <jpa:lob/>
+            </jpa:basic>
+            <jpa:one-to-many own="false" collection-type="java.util.Collection" connected-entity-id="_155214510403921" connected-attribute-id="_155214510418033" v="true" am="PRIVATE" name="uldtypeCollection" jbt="false" id="_155214510388320">
+                <jpa:cascade>
+                    <jpa:cascade-all/>
+                </jpa:cascade>
+            </jpa:one-to-many>
+            <jpa:id attribute-type="String" v="true" am="PRIVATE" name="shape" jbt="false" id="_15521451033833">
+                <jpa:column name="SHAPE" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:id>
+            <jpa:version attribute-type="int" v="true" am="PRIVATE" name="version" jbt="false" id="_155214510388319"/>
+        </jpa:attributes>
+        <jpa:nq e="true" name="Uldshape.findAll">
+            <jpa:query>SELECT u FROM Uldshape u</jpa:query>
+        </jpa:nq>
+        <jpa:table name="ULDSHAPE"/>
+    </jpa:entity>
+    <jpa:entity abs="false" class="Uldtype" v="true" xre="false" m="false" rootElement="_15521451005391" id="_155214510403921">
+        <jpa:attributes>
+            <jpa:basic optional="false" attribute-type="String" v="true" am="PRIVATE" name="descr" jbt="false" id="_155214510407023">
+                <jpa:column name="DESCR" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic optional="false" attribute-type="int" v="true" am="PRIVATE" name="theoleng" jbt="false" id="_155214510411724">
+                <jpa:column name="THEOLENG" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic optional="false" attribute-type="int" v="true" am="PRIVATE" name="theohght" jbt="false" id="_155214510411725">
+                <jpa:column name="THEOHGHT" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic optional="false" attribute-type="int" v="true" am="PRIVATE" name="tarewght" jbt="false" id="_155214510411726">
+                <jpa:column name="TAREWGHT" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic optional="false" attribute-type="int" v="true" am="PRIVATE" name="nelleng" jbt="false" id="_155214510411727">
+                <jpa:column name="NELLENG" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic optional="false" attribute-type="int" v="true" am="PRIVATE" name="welleng" jbt="false" id="_155214510411728">
+                <jpa:column name="WELLENG" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic optional="false" attribute-type="int" v="true" am="PRIVATE" name="doorside" jbt="false" id="_155214510411729">
+                <jpa:column name="DOORSIDE" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic optional="false" attribute-type="String" v="true" am="PRIVATE" name="updtdttm" jbt="false" id="_155214510411730">
+                <jpa:column name="UPDTDTTM" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic optional="false" attribute-type="String" v="true" am="PRIVATE" name="updtuser" jbt="false" id="_155214510414831">
+                <jpa:column name="UPDTUSER" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:many-to-one optional="false" primaryKey="false" connected-entity-id="_15521451033362" connected-attribute-id="_155214510388320" v="true" am="PRIVATE" name="shape" jbt="false" id="_155214510418033">
+                <jpa:cascade/>
+                <jpa:join-column name="SHAPE" rc="SHAPE" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:many-to-one>
+            <jpa:id attribute-type="String" v="true" am="PRIVATE" name="uldtype" jbt="false" id="_155214510403922">
+                <jpa:column name="ULDTYPE" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:id>
+            <jpa:version attribute-type="int" v="true" am="PRIVATE" name="version" jbt="false" id="_155214510418032"/>
+        </jpa:attributes>
+        <jpa:nq e="true" name="Uldtype.findAll">
+            <jpa:query>SELECT u FROM Uldtype u</jpa:query>
+        </jpa:nq>
+        <jpa:table name="ULDTYPE"/>
+    </jpa:entity>
+</jpa:entity-mappings>
