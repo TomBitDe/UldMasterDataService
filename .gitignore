@@ -1,0 +1,10 @@
+/UldMasterDataService-api/build/
+/UldMasterDataService-api/dist/
+/UldMasterDataService-ldr/build/
+/UldMasterDataService-ldr/dist/
+/UldMasterDataService-ejb/build/
+/build/
+/dist/
+/UldMasterDataService-war/build/
+/UldMasterDataService-war/dist/
+/UldMasterDataService-ejb/dist/
