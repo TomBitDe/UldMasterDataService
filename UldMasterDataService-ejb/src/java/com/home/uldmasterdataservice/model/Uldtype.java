@@ -15,7 +15,7 @@ import javax.persistence.Table;
 import javax.persistence.Version;
 
 /**
- * The type of an ULD
+ * The type of a ULD for example AKE, PMC...
  */
 @Entity
 @Table(name = "ULDTYPE")

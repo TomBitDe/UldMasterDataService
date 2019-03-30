@@ -5,7 +5,7 @@ import java.util.List;
 import javax.ejb.Local;
 
 /**
- * Local uldshape services.
+ * Uldshape interface for local access.
  */
 @Local
 public interface UldshapeManager {

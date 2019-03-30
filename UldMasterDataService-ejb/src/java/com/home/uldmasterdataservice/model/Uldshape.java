@@ -18,7 +18,7 @@ import javax.persistence.Table;
 import javax.persistence.Version;
 
 /**
- * The shape of an ULD
+ * The shape of a ULD for example LD3, M6...
  */
 @Entity
 @Table(name = "ULDSHAPE")

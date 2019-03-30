@@ -10,9 +10,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.annotation.Resource;
 import javax.ejb.EJBException;
-import javax.ejb.SessionContext;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
@@ -21,13 +19,11 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 /**
+ * Uldshape bean implementation.
  */
 @Stateless
 public class UldshapeManagerBean implements UldshapeManager, UldshapeService {
     private static final Logger LOG = Logger.getLogger(UldshapeManagerBean.class.getName());
-
-    @Resource
-    SessionContext ctx;
 
     @PersistenceContext
     private EntityManager em;

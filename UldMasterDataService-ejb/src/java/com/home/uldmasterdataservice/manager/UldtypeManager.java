@@ -5,7 +5,7 @@ import java.util.List;
 import javax.ejb.Local;
 
 /**
- * Local uldtype services.
+ * Uldtype interface for local access.
  */
 @Local
 public interface UldtypeManager {

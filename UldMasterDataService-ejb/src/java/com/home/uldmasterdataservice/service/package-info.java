@@ -1,4 +1,4 @@
 /**
- * Remote interface classes and value objects for service usage.
+ * Remote interface classes for service usage.
  */
 package com.home.uldmasterdataservice.service;

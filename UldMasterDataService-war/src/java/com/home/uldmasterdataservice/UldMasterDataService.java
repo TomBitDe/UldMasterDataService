@@ -26,7 +26,7 @@ public class UldMasterDataService {
     UldshapeService uldshapeService;
 
     /**
-     * Get a list of all uld shapes.
+     * Get a list of all uld shapes in a range.
      *
      * @param offset the position to start fetching
      * @param count  the number of fetches to do
@@ -53,7 +53,7 @@ public class UldMasterDataService {
     }
 
     /**
-     * Get a flight by its flight number and scheduled date.
+     * Get a uldshape by its id (shape).
      *
      * @param shape the shape of the uld
      *

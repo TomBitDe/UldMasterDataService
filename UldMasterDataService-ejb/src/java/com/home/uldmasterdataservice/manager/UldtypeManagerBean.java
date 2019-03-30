@@ -4,23 +4,18 @@ import com.home.uldmasterdataservice.model.Uldtype;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.annotation.Resource;
 import javax.ejb.EJBException;
-import javax.ejb.SessionContext;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 /**
- *
+ * Uldtype bean implementation.
  */
 @Stateless
 public class UldtypeManagerBean implements UldtypeManager {
     private static final Logger LOG = Logger.getLogger(UldtypeManagerBean.class.getName());
-
-    @Resource
-    SessionContext ctx;
 
     @PersistenceContext
     private EntityManager em;
