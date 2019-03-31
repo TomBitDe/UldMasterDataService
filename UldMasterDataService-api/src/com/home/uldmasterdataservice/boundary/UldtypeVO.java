@@ -21,6 +21,7 @@ public class UldtypeVO implements Serializable {
     private int doorside;
     private String updated;
     private String updtuser;
+    private UldshapeVO shape;
 
     public UldtypeVO() {
     }
@@ -103,6 +104,14 @@ public class UldtypeVO implements Serializable {
 
     public void setUpdtuser(String updtuser) {
         this.updtuser = updtuser;
+    }
+
+    public UldshapeVO getShape() {
+        return shape;
+    }
+
+    public void setShape(UldshapeVO shape) {
+        this.shape = shape;
     }
 
     @Override

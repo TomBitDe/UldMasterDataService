@@ -1,11 +1,19 @@
 package com.home.uldmasterdataservice.manager;
 
+import com.home.uldmasterdataservice.boundary.UldtypeVO;
 import com.home.uldmasterdataservice.model.Uldtype;
+import com.home.uldmasterdataservice.service.UldtypeService;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.EJBException;
 import javax.ejb.Stateless;
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -14,7 +22,7 @@ import javax.persistence.Query;
  * Uldtype bean implementation.
  */
 @Stateless
-public class UldtypeManagerBean implements UldtypeManager {
+public class UldtypeManagerBean implements UldtypeManager, UldtypeService {
     private static final Logger LOG = Logger.getLogger(UldtypeManagerBean.class.getName());
 
     @PersistenceContext
@@ -80,5 +88,126 @@ public class UldtypeManagerBean implements UldtypeManager {
             LOG.severe(ex.getMessage());
             throw new EJBException("Error while deleting Uldtype [" + id + ']');
         }
+    }
+
+    @Override
+    @TransactionAttribute(TransactionAttributeType.NOT_SUPPORTED)
+    public List<UldtypeVO> getUldtypeContent() {
+        List<Uldtype> uldtypeList = getAll();
+
+        List<UldtypeVO> uldtypeVOList = new ArrayList<>();
+        for (Uldtype uldtype : uldtypeList) {
+            UldtypeVO uldtypeVO = buildUldtypeVO(uldtype);
+            uldtypeVOList.add(uldtypeVO);
+            LOG.finer(uldtypeVO.toString());
+        }
+
+        return uldtypeVOList;
+    }
+
+    @Override
+    @TransactionAttribute(TransactionAttributeType.NOT_SUPPORTED)
+    public List<UldtypeVO> getUldtypeContent(int offset, int count) {
+        if (offset < 0) {
+            throw new IllegalArgumentException("offset < 0");
+        }
+        if (count < 1) {
+            throw new IllegalArgumentException("count < 1");
+        }
+
+        LOG.log(Level.FINER, "Offset=[{0}] count=[{1}]", new Object[]{offset, count});
+
+        Query query = em.createQuery("select t FROM Uldtype t");
+        query.setFirstResult(offset);
+        query.setMaxResults(count);
+
+        List<Uldtype> uldtypeList = query.getResultList();
+        LOG.log(Level.FINER, "Return [{0}] uldtype(s)", uldtypeList.size());
+
+        List<UldtypeVO> uldtypeVOList = new ArrayList<>();
+        for (Uldtype uldtype : uldtypeList) {
+            UldtypeVO uldtypeVO = buildUldtypeVO(uldtype);
+            uldtypeVOList.add(uldtypeVO);
+            LOG.finer(uldtypeVO.toString());
+        }
+
+        return uldtypeVOList;
+    }
+
+    @Override
+    public UldtypeVO getByUldtype(String id) {
+        if (id == null) {
+            throw new IllegalArgumentException("id is invalid");
+        }
+
+        Uldtype uldtype = getById(id);
+
+        UldtypeVO uldtypeVO = buildUldtypeVO(uldtype);
+
+        return uldtypeVO;
+    }
+
+    @Override
+    public boolean exists(String id) {
+        if (id == null) {
+            throw new IllegalArgumentException("id is invalid");
+        }
+
+        LOG.log(Level.FINER, "Search for [{0}]", id);
+
+        if (em.find(Uldtype.class, id) != null) {
+            LOG.log(Level.FINER, "Return [true]");
+            return true;
+        }
+        else {
+            LOG.log(Level.FINER, "Return [false]");
+            return false;
+        }
+    }
+
+    @Override
+    public long countUldtypes() {
+        Query query;
+
+        query = em.createQuery("SELECT count(t) FROM Uldtype t");
+        long count = (long) query.getSingleResult();
+        LOG.log(Level.FINER, "Return [{0}]", count);
+
+        return count;
+    }
+
+    private UldtypeVO buildUldtypeVO(Uldtype uldtype) {
+        UldtypeVO uldtypeVO = new UldtypeVO();
+
+        uldtypeVO.setUldtype(uldtype.getUldtype());
+        uldtypeVO.setDescr(uldtype.getDescr());
+        uldtypeVO.setDoorside(uldtype.getDoorside());
+        uldtypeVO.setNelleng(uldtype.getNelleng());
+        uldtypeVO.setTarewght(uldtype.getTarewght());
+        uldtypeVO.setTheohght(uldtype.getTheohght());
+        uldtypeVO.setTheoleng(uldtype.getTheoleng());
+        uldtypeVO.setWelleng(uldtype.getWelleng());
+        uldtypeVO.setShape(UldshapeManagerBean.buildUldshapeVO(uldtype.getShape()));
+
+        uldtypeVO.setUpdated(convert2String(uldtype.getUpdated(), "yyyyMMddHHmmssS"));
+        uldtypeVO.setUpdtuser(uldtype.getUpdtuser());
+
+        return uldtypeVO;
+    }
+
+    /**
+     * Convert a Timestamp to a String using the given format.
+     *
+     * @param ts  the timestamp
+     * @param fmt the format to use for conversion
+     *
+     * @return the resulting string
+     */
+    private static String convert2String(Timestamp ts, String fmt) {
+        Date date = new Date();
+        date.setTime(ts.getTime());
+        String formattedDate = new SimpleDateFormat(fmt).format(date);
+
+        return formattedDate;
     }
 }

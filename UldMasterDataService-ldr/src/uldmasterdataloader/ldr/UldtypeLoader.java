@@ -69,8 +69,8 @@ public class UldtypeLoader {
         PreparedStatement pStmt;
         String insertStmt = "INSERT INTO " + schema + "ULDTYPE "
                 + "(ULDTYPE, DESCR, DOORSIDE, NELLENG, TAREWGHT, THEOHGHT, THEOLENG, "
-                + "UPDATED, UPDTUSER, VERSION, WELLENG) VALUES "
-                + "(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                + "UPDATED, UPDTUSER, VERSION, WELLENG, SHAPE) VALUES "
+                + "(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         int count = 0;
 
         LOG.log(Level.INFO, "Initialize basic Uldtypes in DB from file [{0}]", path);
@@ -96,6 +96,7 @@ public class UldtypeLoader {
                 pStmt.setString(9, uldtypeVO.getUpdtuser());
                 pStmt.setLong(10, 0);
                 pStmt.setInt(11, uldtypeVO.getWelleng());
+                pStmt.setString(12, line.substring(35, 39).replaceAll("'", "''").trim());
 
                 // execute insert SQL stetement
                 pStmt.executeUpdate();

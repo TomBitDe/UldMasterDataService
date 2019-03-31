@@ -172,7 +172,14 @@ public class UldshapeManagerBean implements UldshapeManager, UldshapeService {
         return count;
     }
 
-    private UldshapeVO buildUldshapeVO(Uldshape uldshape) {
+    /**
+     * Build a uldshape VO from the entity.
+     *
+     * @param uldshape the shape entity
+     *
+     * @return the shape VO
+     */
+    public static UldshapeVO buildUldshapeVO(Uldshape uldshape) {
         UldshapeVO uldshapeVO = new UldshapeVO();
 
         uldshapeVO.setShape(uldshape.getShape());
@@ -204,7 +211,7 @@ public class UldshapeManagerBean implements UldshapeManager, UldshapeService {
      *
      * @return the resulting string
      */
-    private String convert2String(Timestamp ts, String fmt) {
+    private static String convert2String(Timestamp ts, String fmt) {
         Date date = new Date();
         date.setTime(ts.getTime());
         String formattedDate = new SimpleDateFormat(fmt).format(date);
