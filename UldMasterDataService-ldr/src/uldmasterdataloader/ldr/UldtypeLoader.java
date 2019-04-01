@@ -83,6 +83,7 @@ public class UldtypeLoader {
             while ((line = in.readLine()) != null) {
                 LOG.finer(line);
 
+                // Use the UldtypeVO except the shape item
                 UldtypeVO uldtypeVO = parseUldtype(line);
 
                 pStmt.setString(1, uldtypeVO.getUldtype());
@@ -96,6 +97,8 @@ public class UldtypeLoader {
                 pStmt.setString(9, uldtypeVO.getUpdtuser());
                 pStmt.setLong(10, 0);
                 pStmt.setInt(11, uldtypeVO.getWelleng());
+
+                // This is outside the UldtypeVO
                 pStmt.setString(12, line.substring(35, 39).replaceAll("'", "''").trim());
 
                 // execute insert SQL stetement
