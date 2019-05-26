@@ -8,3 +8,6 @@
 /UldMasterDataService-war/build/
 /UldMasterDataService-war/dist/
 /UldMasterDataService-ejb/dist/
+/UldMasterDataBrowser/nbproject/private/
+/UldMasterDataBrowser/build/
+/UldMasterDataBrowser/dist/
