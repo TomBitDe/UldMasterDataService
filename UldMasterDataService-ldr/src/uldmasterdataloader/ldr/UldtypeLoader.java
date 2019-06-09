@@ -66,7 +66,7 @@ public class UldtypeLoader {
     public void init() {
         BufferedReader in = null;
         String line;
-        PreparedStatement pStmt;
+        PreparedStatement iStmt;
         String insertStmt = "INSERT INTO " + schema + "ULDTYPE "
                 + "(ULDTYPE, DESCR, DOORSIDE, NELLENG, TAREWGHT, THEOHGHT, THEOLENG, "
                 + "UPDATED, UPDTUSER, VERSION, WELLENG, SHAPE) VALUES "
@@ -78,7 +78,7 @@ public class UldtypeLoader {
         try {
             in = new BufferedReader(new InputStreamReader(new FileInputStream(path), StandardCharsets.UTF_8));
 
-            pStmt = conn.prepareStatement(insertStmt);
+            iStmt = conn.prepareStatement(insertStmt);
 
             while ((line = in.readLine()) != null) {
                 LOG.finer(line);
@@ -86,23 +86,23 @@ public class UldtypeLoader {
                 // Use the UldtypeVO except the shape item
                 UldtypeVO uldtypeVO = parseUldtype(line);
 
-                pStmt.setString(1, uldtypeVO.getUldtype());
-                pStmt.setString(2, uldtypeVO.getDescr());
-                pStmt.setInt(3, uldtypeVO.getDoorside());
-                pStmt.setInt(4, uldtypeVO.getNelleng());
-                pStmt.setInt(5, uldtypeVO.getTarewght());
-                pStmt.setInt(6, uldtypeVO.getTheohght());
-                pStmt.setInt(7, uldtypeVO.getTheoleng());
-                pStmt.setTimestamp(8, DbUtil.getCurrentTimeStamp());
-                pStmt.setString(9, uldtypeVO.getUpdtuser());
-                pStmt.setLong(10, 0);
-                pStmt.setInt(11, uldtypeVO.getWelleng());
+                iStmt.setString(1, uldtypeVO.getUldtype());
+                iStmt.setString(2, uldtypeVO.getDescr());
+                iStmt.setInt(3, uldtypeVO.getDoorside());
+                iStmt.setInt(4, uldtypeVO.getNelleng());
+                iStmt.setInt(5, uldtypeVO.getTarewght());
+                iStmt.setInt(6, uldtypeVO.getTheohght());
+                iStmt.setInt(7, uldtypeVO.getTheoleng());
+                iStmt.setTimestamp(8, DbUtil.getCurrentTimeStamp());
+                iStmt.setString(9, uldtypeVO.getUpdtuser());
+                iStmt.setLong(10, 0);
+                iStmt.setInt(11, uldtypeVO.getWelleng());
 
                 // This is outside the UldtypeVO
-                pStmt.setString(12, line.substring(35, 39).replaceAll("'", "''").trim());
+                iStmt.setString(12, line.substring(35, 39).replaceAll("'", "''").trim());
 
                 // execute insert SQL stetement
-                pStmt.executeUpdate();
+                iStmt.executeUpdate();
 
                 ++count;
             }

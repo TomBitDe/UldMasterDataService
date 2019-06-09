@@ -70,7 +70,7 @@ public class UldshapeLoader {
     public void init() {
         BufferedReader in = null;
         String line;
-        PreparedStatement pStmt;
+        PreparedStatement iStmt;
         String insertStmt = "INSERT INTO " + schema + "ULDSHAPE "
                 + "(SHAPE, ALLHGHT, ALLLENG, ALLWDTH, BIGPIC, DESCR, INTERNALVOLUME, INTHGHT, INTLENG, INTWDTH, "
                 + "MAXGROSSWGHT, RATING, TAREWGHT, THUMBNAIL, UPDATED, UPDTUSER, VERSION) VALUES "
@@ -82,33 +82,33 @@ public class UldshapeLoader {
         try {
             in = new BufferedReader(new InputStreamReader(new FileInputStream(path), StandardCharsets.UTF_8));
 
-            pStmt = conn.prepareStatement(insertStmt);
+            iStmt = conn.prepareStatement(insertStmt);
 
             while ((line = in.readLine()) != null) {
                 LOG.finer(line);
 
                 UldshapeVO uldshapeVO = parseUldshape(line);
 
-                pStmt.setString(1, uldshapeVO.getShape());
-                pStmt.setInt(2, uldshapeVO.getAllhght());
-                pStmt.setInt(3, uldshapeVO.getAllleng());
-                pStmt.setInt(4, uldshapeVO.getAllwdth());
-                pStmt.setBytes(5, uldshapeVO.getBigpic());
-                pStmt.setString(6, uldshapeVO.getDescr());
-                pStmt.setInt(7, uldshapeVO.getInternalvolume());
-                pStmt.setInt(8, uldshapeVO.getInthght());
-                pStmt.setInt(9, uldshapeVO.getIntleng());
-                pStmt.setInt(10, uldshapeVO.getIntwdth());
-                pStmt.setInt(11, uldshapeVO.getMaxgrosswght());
-                pStmt.setString(12, uldshapeVO.getRating());
-                pStmt.setInt(13, uldshapeVO.getTarewght());
-                pStmt.setBytes(14, uldshapeVO.getThumbnail());
-                pStmt.setTimestamp(15, DbUtil.getCurrentTimeStamp());
-                pStmt.setString(16, uldshapeVO.getUpdtuser());
-                pStmt.setLong(17, 0);
+                iStmt.setString(1, uldshapeVO.getShape());
+                iStmt.setInt(2, uldshapeVO.getAllhght());
+                iStmt.setInt(3, uldshapeVO.getAllleng());
+                iStmt.setInt(4, uldshapeVO.getAllwdth());
+                iStmt.setBytes(5, uldshapeVO.getBigpic());
+                iStmt.setString(6, uldshapeVO.getDescr());
+                iStmt.setInt(7, uldshapeVO.getInternalvolume());
+                iStmt.setInt(8, uldshapeVO.getInthght());
+                iStmt.setInt(9, uldshapeVO.getIntleng());
+                iStmt.setInt(10, uldshapeVO.getIntwdth());
+                iStmt.setInt(11, uldshapeVO.getMaxgrosswght());
+                iStmt.setString(12, uldshapeVO.getRating());
+                iStmt.setInt(13, uldshapeVO.getTarewght());
+                iStmt.setBytes(14, uldshapeVO.getThumbnail());
+                iStmt.setTimestamp(15, DbUtil.getCurrentTimeStamp());
+                iStmt.setString(16, uldshapeVO.getUpdtuser());
+                iStmt.setLong(17, 0);
 
                 // execute insert SQL stetement
-                pStmt.executeUpdate();
+                iStmt.executeUpdate();
 
                 ++count;
             }

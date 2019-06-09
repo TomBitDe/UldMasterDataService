@@ -7,6 +7,11 @@ import uldmasterdataloader.util.ArgsEvaluator;
 /**
  * The ULD master data loader main application.<br>
  * <br>
+ * Currently both DB tables (ULDSHAPE, ULDTYPE) must be empty before execution. Delete content in this order:<br>
+ * <br>
+ * delete from uldtype;<br>
+ * delete from uldshape;<br>
+ * <br>
  * If no argument is given then all DB tables (ULDSHAPE, ULDTYPE) are initialized with file data.<br>
  * If argument ULDSHAPES is given then only DB table ULDSHAPE is initialized with file data.<br>
  * If argument ULDTYPES is given then only DB table ULDTYPE is initialized with file data.<br>
