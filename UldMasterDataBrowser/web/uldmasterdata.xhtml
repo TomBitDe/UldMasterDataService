@@ -20,51 +20,80 @@
         </h:head>
 
         <h:body>
+            <h:form id="masterData">
 
-            <p:layout fullPage="true">
+                <p:layout fullPage="true">
 
-                <p:layoutUnit position="north" size="50" resizable="true" closable="true" collapsible="true">
-                    Uld Master Data
-                </p:layoutUnit>
+                    <p:layoutUnit position="west" size="245" header="Collapse" collapsible="true">
+                        <p:menu>
+                            <p:submenu label="Master Data">
+                                <p:menuitem value="Shapes" process="shapesForm" />
+                                <p:menuitem value="Types" url="http://www.primefaces.org/documentation.html" />
+                            </p:submenu>
 
-                <p:layoutUnit position="west" size="245" header="Left Collapse" collapsible="true">
-                    <p:menu>
-                        <p:submenu label="Master Data">
-                            <p:menuitem value="Shapes" url="http://www.primefaces.org/showcase-labs/ui/home.jsf" />
-                            <p:menuitem value="Types" url="http://www.primefaces.org/documentation.html" />
-                        </p:submenu>
+                        </p:menu>
+                    </p:layoutUnit>
 
-                    </p:menu>
-                </p:layoutUnit>
+                    <p:layoutUnit position="center">
+                        <h:form id="shapesForm">
+                            <p:dataGrid var="uldShape" value="#{uldShapeDisplay.uldShapes}"
+                                        rows="6" paginator="true" id="uldShape"
+                                        paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                        rowsPerPageTemplate="6,12,18">
 
-                <p:layoutUnit position="center">
-                    <p:dataGrid var="uldShape" value="#{uldShapeDisplay.uldShapes}" columns="3"
-                                rows="12" paginator="true" id="uldShape"
-                                paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                                rowsPerPageTemplate="6,12,16">
+                                <f:facet name="header">
+                                    Shapes
+                                </f:facet>
 
-                        <f:facet name="header">
-                            Shapes
-                        </f:facet>
+                                <p:panel style="text-align:center;">
+                                    <h:panelGrid columns="1" style="width:100%">
+                                        <p:commandLink update=":masterData:shapesForm:shapeDetail" oncomplete="PF('shapeDialog').show()" title="View Detail">
+                                            <h:outputText value="#{uldShape.shape}" style="color:blue"/>
+                                            <f:setPropertyActionListener value="#{uldShape}" target="#{uldShapeDisplay.selectedShape}" />
+                                        </p:commandLink>
+                                        <p:graphicImage value="#{uldShapeDisplay.thumbnail}" width="100" height="70">
+                                            <f:param name="shape" value="#{uldShape.shape}" />
+                                        </p:graphicImage>
 
-                        <p:panel header="#{uldShape.shape}" style="text-align:center">
-                            <h:panelGrid columns="1" style="width:100%">
-                                
-                                <p:graphicImage value="#{uldShapeDisplay.thumbnail}">
-                                    <f:param name="shape" value="#{uldShape.shape}" />
-                                </p:graphicImage>
-                                <h:outputText value="#{uldShape.descr}" />
+                                        <h:outputText value="#{uldShape.rating}" />
+                                    </h:panelGrid>
+                                </p:panel>
 
-                            </h:panelGrid>
-                        </p:panel>
+                            </p:dataGrid>
+                            <p:dialog header="Shape Info" widgetVar="shapeDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+                                <p:outputPanel id="shapeDetail" style="text-align:center;">
+                                    <p:panelGrid  columns="2" rendered="#{not empty uldShapeDisplay.selectedShape}" columnClasses="label,value">
+<!--
+                                        <f:facet name="header">
+                                            <p:graphicImage value="#{selectedShape.bigpic}" width="100" height="70">
+                                                <f:param name="shapeDetail" value="#{selectedShape.shape}" />
+                                            </p:graphicImage>
+                                        </f:facet>
+-->
+                                        <h:outputText value="Shape:" />
+                                        <h:outputText value="#{selectedShape.shape}" />
 
-                    </p:dataGrid>
-                </p:layoutUnit>
+                                        <h:outputText value="Description:" />
+                                        <h:outputText value="#{selectedShape.descr}" />
 
-            </p:layout>
+                                        <!--
+                                                                        <h:outputText value="Color:" />
+                                                                        <h:outputText value="#{dataGridView.selectedCar.color}" style="color:#{dataGridView.selectedCar.color}"/>
+                                        
+                                                                        <h:outputText value="Price" />
+                                                                        <h:outputText value="$#{dataGridView.selectedCar.price}" />
+                                        -->
+                                    </p:panelGrid>
+                                </p:outputPanel>
+                            </p:dialog>
+                        </h:form>
+                    </p:layoutUnit>
 
+                </p:layout>
+            </h:form>
         </h:body>
 
     </f:view>
+
 </html>
 

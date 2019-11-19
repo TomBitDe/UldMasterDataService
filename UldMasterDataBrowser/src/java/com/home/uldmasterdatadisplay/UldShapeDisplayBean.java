@@ -39,6 +39,8 @@ public class UldShapeDisplayBean implements Serializable {
 
     private List<UldshapeVO> uldShapes;
 
+    private UldshapeVO selectedShape;
+
     public UldShapeDisplayBean() {
         jaxRsClient = ClientBuilder.newClient();
         uldShapes = new ArrayList<>();
@@ -55,6 +57,7 @@ public class UldShapeDisplayBean implements Serializable {
     public void init() {
         LOG.debug("Load uldshapes...");
         loadUldShapes();
+        LOG.debug("Finished loading uldshapes...");
     }
 
     /**
@@ -100,5 +103,38 @@ public class UldShapeDisplayBean implements Serializable {
             }
         }
         return new DefaultStreamedContent();
+    }
+
+    /**
+     * Get the BigPic data as StreamedContent.
+     *
+     * @return the image as StreamedContent
+     */
+    public StreamedContent getBigpic() {
+        FacesContext context = FacesContext.getCurrentInstance();
+
+        if (context.getCurrentPhaseId() == PhaseId.RENDER_RESPONSE) {
+            // So, we're rendering the HTML. Return a stub StreamedContent so that it will generate right URL.
+            return new DefaultStreamedContent();
+        }
+        else {
+            // So, browser is requesting the image. Return a real StreamedContent with the image bytes.
+            String shape = context.getExternalContext().getRequestParameterMap().get("shapeDetail");
+
+            for (UldshapeVO item : uldShapes) {
+                if (item.getShape().equals(shape)) {
+                    return new DefaultStreamedContent(new ByteArrayInputStream(item.getBigpic()));
+                }
+            }
+        }
+        return new DefaultStreamedContent();
+    }
+
+    public void setSelectedShape(UldshapeVO selectedShape) {
+        this.selectedShape = selectedShape;
+    }
+
+    public UldshapeVO getSelectedShape() {
+        return selectedShape;
     }
 }
