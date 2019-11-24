@@ -37,17 +37,17 @@ public class UldShapeDisplayBean implements Serializable {
      */
     private final Client jaxRsClient;
 
-    private List<UldshapeVO> uldShapes;
+    private List<UldshapeVO> uldShapeList;
 
     private UldshapeVO selectedShape;
 
     public UldShapeDisplayBean() {
         jaxRsClient = ClientBuilder.newClient();
-        uldShapes = new ArrayList<>();
+        uldShapeList = new ArrayList<>();
     }
 
-    public List<UldshapeVO> getUldShapes() {
-        return uldShapes;
+    public List<UldshapeVO> getUldShapeList() {
+        return uldShapeList;
     }
 
     /**
@@ -69,15 +69,79 @@ public class UldShapeDisplayBean implements Serializable {
             // Try to load the uldshapes
             // getAllUldshapes (GET http://localhost:8080/UldMasterDataService-war/rest/UldMasterDataService/uldshapes/0/100)
             LOG.debug("RESTful call to [" + uldShapesUri + "]...");
-            uldShapes = jaxRsClient.target(uldShapesUri)
+            uldShapeList = jaxRsClient.target(uldShapesUri)
                     .request("application/xml").get(new GenericType<List<UldshapeVO>>() {
             });
         }
         catch (Exception ex) {
             LOG.error(uldShapesUri + " : " + ex.getMessage());
             // Clear the uldshapes list in case loading failed
-            uldShapes.clear();
+            uldShapeList.clear();
         }
+    }
+
+    public void setSelectedShape(UldshapeVO selectedShape) {
+        this.selectedShape = selectedShape;
+    }
+
+    public UldshapeVO getSelectedShape() {
+        return selectedShape;
+    }
+
+    public String getSelShape() {
+        return this.selectedShape.getShape();
+    }
+
+    public String getSelRating() {
+        return this.selectedShape.getRating();
+    }
+
+    public String getSelDescr() {
+        return this.selectedShape.getDescr();
+    }
+
+    public String getSelMaxgrosswght() {
+        return String.valueOf(this.selectedShape.getMaxgrosswght());
+    }
+
+    public String getSelTarewght() {
+        return String.valueOf(this.selectedShape.getTarewght());
+    }
+
+    public String getSelInternalvolume() {
+        return String.valueOf(this.selectedShape.getInternalvolume());
+    }
+
+    public String getSelIntleng() {
+        return String.valueOf(this.selectedShape.getIntleng());
+    }
+
+    public String getSelIntwdth() {
+        return String.valueOf(this.selectedShape.getIntwdth());
+    }
+
+    public String getSelInthght() {
+        return String.valueOf(this.selectedShape.getInthght());
+    }
+
+    public String getSelAllleng() {
+        return String.valueOf(this.selectedShape.getAllleng());
+    }
+
+    public String getSelAllwdth() {
+        return String.valueOf(this.selectedShape.getAllwdth());
+    }
+
+    public String getSelAllhght() {
+        return String.valueOf(this.selectedShape.getAllhght());
+    }
+
+    public String getSelUpdated() {
+        return this.selectedShape.getUpdated();
+    }
+
+    public String getSelUpdtuser() {
+        return this.selectedShape.getUpdtuser();
     }
 
     /**
@@ -96,7 +160,7 @@ public class UldShapeDisplayBean implements Serializable {
             // So, browser is requesting the image. Return a real StreamedContent with the image bytes.
             String shape = context.getExternalContext().getRequestParameterMap().get("shape");
 
-            for (UldshapeVO item : uldShapes) {
+            for (UldshapeVO item : uldShapeList) {
                 if (item.getShape().equals(shape)) {
                     return new DefaultStreamedContent(new ByteArrayInputStream(item.getThumbnail()));
                 }
@@ -119,22 +183,14 @@ public class UldShapeDisplayBean implements Serializable {
         }
         else {
             // So, browser is requesting the image. Return a real StreamedContent with the image bytes.
-            String shape = context.getExternalContext().getRequestParameterMap().get("shapeDetail");
+            String shape = context.getExternalContext().getRequestParameterMap().get("shape");
 
-            for (UldshapeVO item : uldShapes) {
+            for (UldshapeVO item : uldShapeList) {
                 if (item.getShape().equals(shape)) {
                     return new DefaultStreamedContent(new ByteArrayInputStream(item.getBigpic()));
                 }
             }
         }
         return new DefaultStreamedContent();
-    }
-
-    public void setSelectedShape(UldshapeVO selectedShape) {
-        this.selectedShape = selectedShape;
-    }
-
-    public UldshapeVO getSelectedShape() {
-        return selectedShape;
     }
 }

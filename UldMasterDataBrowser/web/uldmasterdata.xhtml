@@ -6,6 +6,9 @@
       xmlns:p="http://primefaces.org/ui">
 
     <style type="text/css">
+        .label {
+            font-weight: normal;
+        }
         .value {
             font-weight: bold;
         }
@@ -27,7 +30,7 @@
                     <p:layoutUnit position="west" size="245" header="Collapse" collapsible="true">
                         <p:menu>
                             <p:submenu label="Master Data">
-                                <p:menuitem value="Shapes" process="shapesForm" />
+                                <p:menuitem value="Shapes" url="http://www.primefaces.org/documentation.html" />
                                 <p:menuitem value="Types" url="http://www.primefaces.org/documentation.html" />
                             </p:submenu>
 
@@ -36,7 +39,7 @@
 
                     <p:layoutUnit position="center">
                         <h:form id="shapesForm">
-                            <p:dataGrid var="uldShape" value="#{uldShapeDisplay.uldShapes}"
+                            <p:dataGrid var="uldShape" value="#{uldShapeDisplay.uldShapeList}"
                                         rows="6" paginator="true" id="uldShape"
                                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                         rowsPerPageTemplate="6,12,18">
@@ -61,28 +64,48 @@
 
                             </p:dataGrid>
                             <p:dialog header="Shape Info" widgetVar="shapeDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
-                                <p:outputPanel id="shapeDetail" style="text-align:center;">
-                                    <p:panelGrid  columns="2" rendered="#{not empty uldShapeDisplay.selectedShape}" columnClasses="label,value">
-<!--
+                                <p:outputPanel id="shapeDetail" style="text-align:left;">
+                                    <p:panelGrid  columns="4" rendered="#{not empty uldShapeDisplay.selectedShape}" columnClasses="label,value,label,value">
                                         <f:facet name="header">
-                                            <p:graphicImage value="#{selectedShape.bigpic}" width="100" height="70">
-                                                <f:param name="shapeDetail" value="#{selectedShape.shape}" />
+                                            <p:graphicImage value="#{uldShapeDisplay.bigpic}" width="500" height="400">
+                                                <f:param name="shape" value="#{uldShapeDisplay.selShape}" />
                                             </p:graphicImage>
                                         </f:facet>
--->
-                                        <h:outputText value="Shape:" />
-                                        <h:outputText value="#{selectedShape.shape}" />
-
-                                        <h:outputText value="Description:" />
-                                        <h:outputText value="#{selectedShape.descr}" />
-
-                                        <!--
-                                                                        <h:outputText value="Color:" />
-                                                                        <h:outputText value="#{dataGridView.selectedCar.color}" style="color:#{dataGridView.selectedCar.color}"/>
                                         
-                                                                        <h:outputText value="Price" />
-                                                                        <h:outputText value="$#{dataGridView.selectedCar.price}" />
-                                        -->
+                                        <h:outputText value="Shape:" />
+                                        <h:outputText value="#{uldShapeDisplay.selShape}" />
+                                        <h:outputText value="Description:" />
+                                        <h:outputText value="#{uldShapeDisplay.selDescr}" />
+
+                                        <h:outputText value="Rating:" />
+                                        <h:outputText value="#{uldShapeDisplay.selRating}" />
+                                        <h:outputText value="Max. gross weight:" />
+                                        <h:outputText value="#{uldShapeDisplay.selMaxgrosswght} kg" />
+
+                                        <h:outputText value="Tare weight:" />
+                                        <h:outputText value="#{uldShapeDisplay.selTarewght} kg" />
+                                        <h:outputText value="Internal volume:" />
+                                        <h:outputText value="#{uldShapeDisplay.selInternalvolume} m^3" />
+
+                                        <h:outputText value="Internal length:" />
+                                        <h:outputText value="#{uldShapeDisplay.selIntleng} ft" />
+                                        <h:outputText value="Internal width:" />
+                                        <h:outputText value="#{uldShapeDisplay.selIntwdth} ft" />
+
+                                        <h:outputText value="Internal height:" />
+                                        <h:outputText value="#{uldShapeDisplay.selInthght} ft" />
+                                        <h:outputText value="Length:" />
+                                        <h:outputText value="#{uldShapeDisplay.selAllleng} ft" />
+
+                                        <h:outputText value="Width:" />
+                                        <h:outputText value="#{uldShapeDisplay.selAllwdth} ft" />
+                                        <h:outputText value="Height:" />
+                                        <h:outputText value="#{uldShapeDisplay.selAllhght} ft" />
+
+                                        <h:outputText value="Updated:" />
+                                        <h:outputText value="#{uldShapeDisplay.selUpdated}" />
+                                        <h:outputText value="Update user:" />
+                                        <h:outputText value="#{uldShapeDisplay.selUpdtuser}" />
                                     </p:panelGrid>
                                 </p:outputPanel>
                             </p:dialog>
