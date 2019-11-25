@@ -8,9 +8,13 @@
     <style type="text/css">
         .label {
             font-weight: normal;
+            width: 150px;
+            vertical-align: top;
         }
         .value {
             font-weight: bold;
+            width: 150px;
+            vertical-align: top;
         }
     </style>
 
@@ -103,9 +107,7 @@
                                         <h:outputText value="#{uldShapeDisplay.selAllhght} ft" />
 
                                         <h:outputText value="Updated:" />
-                                        <h:outputText value="#{uldShapeDisplay.selUpdated}" >
-                                            <f:convertDateTime type="both" pattern="YYYY-MM-dd HH:mm:ss"/>
-                                        </h:outputText>
+                                        <h:outputText value="#{uldShapeDisplay.selUpdated}" />
                                         <h:outputText value="Update user:" />
                                         <h:outputText value="#{uldShapeDisplay.selUpdtuser}" />
                                     </p:panelGrid>
