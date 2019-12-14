@@ -137,6 +137,7 @@ public class UldShapeDisplayBean implements Serializable {
     }
 
     public String getSelUpdated() {
+        // not like this; better use a real converter
         return getAsString(this.selectedShape.getUpdated());
     }
 

@@ -42,7 +42,6 @@
                     </p:layoutUnit>
 
                     <p:layoutUnit position="center">
-                        <h:form id="shapesForm">
                             <p:dataGrid var="uldShape" value="#{uldShapeDisplay.uldShapeList}"
                                         rows="6" paginator="true" id="uldShape"
                                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
@@ -54,7 +53,7 @@
 
                                 <p:panel style="text-align:center;">
                                     <h:panelGrid columns="1" style="width:100%">
-                                        <p:commandLink update=":masterData:shapesForm:shapeDetail" oncomplete="PF('shapeDialog').show()" title="View Detail">
+                                        <p:commandLink update=":masterData:shapeDetail" oncomplete="PF('shapeDialog').show()" title="View Detail">
                                             <h:outputText value="#{uldShape.shape}" style="color:blue"/>
                                             <f:setPropertyActionListener value="#{uldShape}" target="#{uldShapeDisplay.selectedShape}" />
                                         </p:commandLink>
@@ -113,7 +112,6 @@
                                     </p:panelGrid>
                                 </p:outputPanel>
                             </p:dialog>
-                        </h:form>
                     </p:layoutUnit>
 
                 </p:layout>
