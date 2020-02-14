@@ -10,13 +10,13 @@ import org.apache.commons.logging.LogFactory;
 /**
  * Converter for the "DTTM" format.<br>
  * DTTM Format: YYYYMMDDhhmmssiii<br>
- * YYYY --> Jahr<br>
- * MM --> Monat<br>
- * DD --> Tag<br>
- * hh --> Stunden (0-23)<br>
- * mm --> Minuten<br>
- * ss --> Sekunden<br>
- * iii --> Mircosekunden (optional)<br>
+ * YYYY -- Jahr<br>
+ * MM -- Monat<br>
+ * DD -- Tag<br>
+ * hh -- Stunden (0-23)<br>
+ * mm -- Minuten<br>
+ * ss -- Sekunden<br>
+ * iii -- Mircosekunden (optional)<br>
  */
 public class DttmConverter implements Converter {
 

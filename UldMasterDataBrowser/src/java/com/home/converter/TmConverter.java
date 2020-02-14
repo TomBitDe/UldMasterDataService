@@ -10,10 +10,10 @@ import org.apache.commons.logging.LogFactory;
 /**
  * Konvertierer fuer "TM" Format.<br>
  * TM Format: hhmmssiii<br>
- * hh --> Stunden (0-23)<br>
- * mm --> Minuten<br>
- * ss --> Sekunden<br>
- * iii --> Mircosekunden (optional)<br>
+ * hh -- Stunden (0-23)<br>
+ * mm -- Minuten<br>
+ * ss -- Sekunden<br>
+ * iii -- Mircosekunden (optional)<br>
  */
 public class TmConverter implements Converter {
 
