@@ -4,8 +4,9 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.ConverterException;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import javax.faces.convert.FacesConverter;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 /**
  * Converter for the "DTTM" format.<br>
@@ -18,10 +19,11 @@ import org.apache.commons.logging.LogFactory;
  * ss -- Sekunden<br>
  * iii -- Mircosekunden (optional)<br>
  */
+@FacesConverter("com.home.converter.DttmConverter")
 public class DttmConverter implements Converter {
 
-    private static final Log LOG = LogFactory.getLog(DttmConverter.class);
-    public static final String CONVERTER_ID = "DttmConverter";
+    private static final Logger LOG = LogManager.getLogger(DttmConverter.class.getName());
+//    public static final String CONVERTER_ID = "DttmConverter";
 
     /**
      * Format a "DTTM" as a String.<br>

@@ -103,7 +103,9 @@
                                     <h:outputText value="#{uldShapeDisplay.selAllhght} ft" />
 
                                     <h:outputText value="Updated:" />
-                                    <h:outputText value="#{uldShapeDisplay.selUpdated}" />
+                                    <h:outputText value="#{uldShapeDisplay.selUpdated}" >
+                                        <f:converter converterId = "com.home.converter.DttmConverter" />
+                                    </h:outputText>
                                     <h:outputText value="Update user:" />
                                     <h:outputText value="#{uldShapeDisplay.selUpdtuser}" />
                                 </p:panelGrid>

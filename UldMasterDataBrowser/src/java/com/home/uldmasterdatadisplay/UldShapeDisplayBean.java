@@ -97,8 +97,8 @@ public class UldShapeDisplayBean implements Serializable {
     }
 
     public String getSelUpdated() {
-        // not like this; better use a real converter
-        return getAsString(this.selectedShape.getUpdated());
+        // used a real converter now
+        return this.selectedShape.getUpdated();
     }
 
     public String getSelUpdtuser() {
@@ -153,62 +153,5 @@ public class UldShapeDisplayBean implements Serializable {
             }
         }
         return new DefaultStreamedContent();
-    }
-
-    /**
-     * Format a String as a "DTTM".<br>
-     * Example: "20080620112345321" will be formatted to "2008.06.20 11:23:45.321"
-     *
-     * @param value the String to format
-     *
-     * @return the formatted result as a String
-     */
-    public String getAsString(String value) {
-        if (value == null) {
-            LOG.debug("-->RETURN (null)");
-            return null;
-        }
-        else if (value instanceof String) {
-            String ref = (String) value;
-
-            switch (ref.length()) {
-                case 0:
-                    return ref;
-                case 1:
-                case 2:
-                case 3:
-                case 4:
-                    return ref;
-                case 5:
-                case 6:
-                    return ref.substring(0, 4) + "." + ref.substring(4);
-                case 7:
-                case 8:
-                    return ref.substring(0, 4) + "." + ref.substring(4, 6) + "."
-                            + ref.substring(6);
-                case 9:
-                case 10:
-                    return ref.substring(0, 4) + "." + ref.substring(4, 6) + "."
-                            + ref.substring(6, 8) + " " + ref.substring(8);
-                case 11:
-                case 12:
-                    return ref.substring(0, 4) + "." + ref.substring(4, 6) + "."
-                            + ref.substring(6, 8) + " " + ref.substring(8, 10)
-                            + ":" + ref.substring(10);
-                case 13:
-                case 14:
-                    return ref.substring(0, 4) + "." + ref.substring(4, 6) + "."
-                            + ref.substring(6, 8) + " " + ref.substring(8, 10)
-                            + ":" + ref.substring(10, 12) + ":" + ref.substring(12);
-                default:
-                    return ref.substring(0, 4) + "." + ref.substring(4, 6) + "."
-                            + ref.substring(6, 8) + " " + ref.substring(8, 10)
-                            + ":" + ref.substring(10, 12) + ":" + ref.substring(12, 14)
-                            + "." + ref.substring(14);
-            }
-        }
-        else {
-            return "";
-        }
     }
 }
