@@ -23,7 +23,7 @@ import org.apache.logging.log4j.Logger;
 public class DttmConverter implements Converter {
 
     private static final Logger LOG = LogManager.getLogger(DttmConverter.class.getName());
-//    public static final String CONVERTER_ID = "DttmConverter";
+    public static final String CONVERTER_ID = "DttmConverter";
 
     /**
      * Format a "DTTM" as a String.<br>

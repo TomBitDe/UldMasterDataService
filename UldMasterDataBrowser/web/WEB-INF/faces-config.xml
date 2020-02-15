@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<faces-config version="2.2"
+              xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
+    <application id="UldMasterData">
+        <locale-config>
+            <default-locale>en_GB</default-locale>
+        </locale-config>
+        <resource-bundle>
+            <base-name>com.home.ressources.label</base-name>
+            <var>lab</var>
+        </resource-bundle>
+    </application>
+    <converter>
+        <display-name>DttmConverter</display-name>
+        <converter-id>DttmConverter</converter-id>
+        <converter-class>com.home.converter.DttmConverter</converter-class>
+    </converter>
+    <managed-bean>
+        <managed-bean-name>logoutHandler</managed-bean-name>
+        <managed-bean-class>com.home.handler.LogoutHandler</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    <navigation-rule>
+        <description>Fuer alle Seiten</description>
+        <from-view-id>*</from-view-id>
+        <navigation-case>
+            <from-outcome>go_shapes</from-outcome>
+            <to-view-id>/secure/shapedata.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>go_types</from-outcome>
+            <to-view-id>/secure/typedata.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>go_logout</from-outcome>
+            <to-view-id>/secure/logout.jsp</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <description>Shapes Page</description>
+        <from-view-id>/secure/shapedata.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>go_types</from-outcome>
+            <to-view-id>/secure/typedata.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>go_shapes</from-outcome>
+            <to-view-id>/secure/shapedata.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <description>Types Page</description>
+        <from-view-id>/secure/typedata.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>go_types</from-outcome>
+            <to-view-id>/secure/typedata.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>go_shapes</from-outcome>
+            <to-view-id>/secure/shapedata.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+</faces-config>

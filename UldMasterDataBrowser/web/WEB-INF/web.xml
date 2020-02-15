@@ -6,13 +6,13 @@
         <param-name>javax.faces.PROJECT_STAGE</param-name>
         <param-value>Development</param-value>
     </context-param>
-<!--
+    <!--
     <context-param>
         <param-name>javax.faces.application.CONFIG_FILES</param-name>
         <param-value>/WEB-INF/faces-config.xml</param-value>
     </context-param>
 -->
-        <servlet>
+    <servlet>
         <servlet-name>Faces Servlet</servlet-name>
         <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
         <load-on-startup>1</load-on-startup>
@@ -27,6 +27,6 @@
         </session-timeout>
     </session-config>
     <welcome-file-list>
-        <welcome-file>faces/uldmasterdata.xhtml</welcome-file>
+        <welcome-file>faces/secure/shapedata.xhtml</welcome-file>
     </welcome-file-list>
 </web-app>

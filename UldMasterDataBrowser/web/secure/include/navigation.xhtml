@@ -1,0 +1,14 @@
+<ui:composition xmlns="http://www.w3c.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:ui="http://java.sun.com/jsf/facelets"> 
+
+    <p:menu toggleable="true">
+        <p:submenu label="#{lab.masterDataMenu}" icon="ui-icon-document">
+            <p:menuitem value="#{lab.shapesTitle}" action="go_shapes" />
+            <p:menuitem value="#{lab.typesTitle}" action="go_types" />
+            <p:separator />
+            <p:menuitem value="#{lab.quickShapeAssignTitle}" action="go_typeshape" />
+        </p:submenu>
+    </p:menu>
+</ui:composition>
