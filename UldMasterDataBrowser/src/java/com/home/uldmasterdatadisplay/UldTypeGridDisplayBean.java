@@ -57,7 +57,7 @@ public class UldTypeGridDisplayBean implements Serializable {
      * JAX-RS client to load the uldtypes data.
      */
     private void loadUldTypes() {
-        String uldTypesUri = "http://localhost:8080/UldMasterDataService-war/rest/UldMasterDataService/uldtypes/0/100";
+        String uldTypesUri = "http://localhost:8080/UldMasterDataService-war/rest/UldMasterDataService/uldtypes/0/300";
         try {
             // Try to load the uldtypes
             LOG.debug("RESTful call to [" + uldTypesUri + "]...");

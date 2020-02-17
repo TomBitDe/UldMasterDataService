@@ -23,12 +23,12 @@
 
                     <p:layoutUnit position="center" resizable="true">
                         <p:dataGrid var="uldShape" value="#{uldShapeGridDisplay.uldShapeList}"
-                                    rows="6" paginator="true" id="uldShape"
+                                    rows="12" paginator="true" id="uldShape"
                                     paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                                    rowsPerPageTemplate="6,12,18">
+                                    rowsPerPageTemplate="12,18">
 
                             <f:facet name="header">
-                                Shapes
+                                #{lab.shapesTitle}
                             </f:facet>
 
                             <p:panel style="text-align:center;">
@@ -55,39 +55,39 @@
                                         </p:graphicImage>
                                     </f:facet>
 
-                                    <h:outputText value="Shape:" />
+                                    <h:outputText value="#{lab.shapeText}" />
                                     <h:outputText value="#{uldShapeDisplay.selShape}" />
-                                    <h:outputText value="Rating:" />
+                                    <h:outputText value="#{lab.ratingText}" />
                                     <h:outputText value="#{uldShapeDisplay.selRating}" />
-                                    <h:outputText value="Description:" />
+                                    <h:outputText value="#{lab.descrText}" />
                                     <h:outputText value="#{uldShapeDisplay.selDescr}" />
 
-                                    <h:outputText value="Max. gross weight:" />
+                                    <h:outputText value="#{lab.maxGrossWeightText}" />
                                     <h:outputText value="#{uldShapeDisplay.selMaxgrosswght} kg" />
-                                    <h:outputText value="Tare weight:" />
+                                    <h:outputText value="#{lab.tareWeightText}" />
                                     <h:outputText value="#{uldShapeDisplay.selTarewght} kg" />
-                                    <h:outputText value="Internal volume:" />
+                                    <h:outputText value="#{lab.internalVolumeText}" />
                                     <h:outputText value="#{uldShapeDisplay.selInternalvolume} m^3" />
 
-                                    <h:outputText value="Internal length:" />
+                                    <h:outputText value="#{lab.intLengthText}" />
                                     <h:outputText value="#{uldShapeDisplay.selIntleng} ft" />
-                                    <h:outputText value="Internal width:" />
+                                    <h:outputText value="#{lab.intWidthText}" />
                                     <h:outputText value="#{uldShapeDisplay.selIntwdth} ft" />
-                                    <h:outputText value="Internal height:" />
+                                    <h:outputText value="#{lab.intHeightText}" />
                                     <h:outputText value="#{uldShapeDisplay.selInthght} ft" />
 
-                                    <h:outputText value="Length:" />
+                                    <h:outputText value="#{lab.lengthText}" />
                                     <h:outputText value="#{uldShapeDisplay.selAllleng} ft" />
-                                    <h:outputText value="Width:" />
+                                    <h:outputText value="#{lab.widthText}" />
                                     <h:outputText value="#{uldShapeDisplay.selAllwdth} ft" />
-                                    <h:outputText value="Height:" />
+                                    <h:outputText value="#{lab.heightText}" />
                                     <h:outputText value="#{uldShapeDisplay.selAllhght} ft" />
 
-                                    <h:outputText value="Updated:" />
+                                    <h:outputText value="#{lab.updatedText}" />
                                     <h:outputText value="#{uldShapeDisplay.selUpdated}" >
                                         <f:converter converterId = "DttmConverter" />
                                     </h:outputText>
-                                    <h:outputText value="Update user:" />
+                                    <h:outputText value="#{lab.updatedUserText}" />
                                     <h:outputText value="#{uldShapeDisplay.selUpdtuser}" />
                                 </p:panelGrid>
                             </p:outputPanel>

@@ -2,7 +2,13 @@
 <Scene Scope="Project" version="2">
     <Scope Scope="Faces Configuration Only"/>
     <Scope Scope="Project">
-        <Node id="uldmasterdata.xhtml" x="150" y="150" zoom="true"/>
+        <Node id="secure/include/navigation.xhtml" x="988" y="150" zoom="true"/>
+        <Node id="secure/shapeassigntype.xhtml" x="650" y="150" zoom="true"/>
+        <Node id="secure/logout.jsp" x="400" y="150" zoom="true"/>
+        <Node id="secure/typedata.xhtml" x="400" y="300" zoom="true"/>
+        <Node id="*" x="150" y="300" zoom="true"/>
+        <Node id="secure/shapedata.xhtml" x="150" y="450" zoom="true"/>
+        <Node id="error.html" x="150" y="150" zoom="true"/>
     </Scope>
     <Scope Scope="All Faces Configurations"/>
 </Scene>
