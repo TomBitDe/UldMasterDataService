@@ -1,6 +1,8 @@
 package com.home.uldmasterdataservice.manager;
 
+import com.home.uldmasterdataservice.boundary.UldtypeItemVO;
 import com.home.uldmasterdataservice.boundary.UldtypeVO;
+import com.home.uldmasterdataservice.model.Uldshape;
 import com.home.uldmasterdataservice.model.Uldtype;
 import com.home.uldmasterdataservice.service.UldtypeService;
 import java.sql.Timestamp;
@@ -10,6 +12,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.ejb.EJB;
 import javax.ejb.EJBException;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
@@ -24,6 +27,9 @@ import javax.persistence.Query;
 @Stateless
 public class UldtypeManagerBean implements UldtypeManager, UldtypeService {
     private static final Logger LOG = Logger.getLogger(UldtypeManagerBean.class.getName());
+
+    @EJB
+    private UldshapeManager uldshapeManager;
 
     @PersistenceContext
     private EntityManager em;
@@ -148,6 +154,57 @@ public class UldtypeManagerBean implements UldtypeManager, UldtypeService {
     }
 
     @Override
+    @TransactionAttribute(TransactionAttributeType.NOT_SUPPORTED)
+    public List<UldtypeItemVO> getUldtypesAssigned(String shape) {
+        List<UldtypeItemVO> uldtypeItemVOList = new ArrayList<>();
+
+        Query query = em.createQuery("select u FROM Uldtype u where u.shape.shape = :shape");
+        query.setParameter("shape", shape);
+
+        List<Uldtype> uldtypeList = query.getResultList();
+        LOG.log(Level.INFO, "Found Uldtypes: {0}", uldtypeList.size());
+
+        for (Uldtype uldtype : uldtypeList) {
+            UldtypeItemVO uldtypeItemVO = buildUldtypeItemVO(uldtype.getUldtype());
+            uldtypeItemVOList.add(uldtypeItemVO);
+            LOG.finer(uldtypeItemVO.toString());
+        }
+
+        return uldtypeItemVOList;
+    }
+
+    @Override
+    @TransactionAttribute(TransactionAttributeType.NOT_SUPPORTED)
+    public List<UldtypeItemVO> getUldtypesAvailable(String shape) {
+        List<UldtypeItemVO> uldtypeItemVOList = new ArrayList<>();
+
+        Query query = em.createQuery("select u FROM Uldtype u where u.shape.shape <> :shape");
+        query.setParameter("shape", shape);
+
+        List<Uldtype> uldtypeList = query.getResultList();
+        LOG.log(Level.INFO, "Found Uldtypes: {0}", uldtypeList.size());
+
+        for (Uldtype uldtype : uldtypeList) {
+            UldtypeItemVO uldtypeItemVO = buildUldtypeItemVO(uldtype.getUldtype());
+            uldtypeItemVOList.add(uldtypeItemVO);
+            LOG.finer(uldtypeItemVO.toString());
+        }
+
+        return uldtypeItemVOList;
+    }
+
+    @Override
+    @TransactionAttribute(TransactionAttributeType.REQUIRED)
+    public UldtypeVO assignShape(String shape, String uldtype) {
+        Uldtype toUpdate = getById(uldtype);
+        Uldshape toAssign = uldshapeManager.getById(shape);
+
+        toUpdate.setShape(toAssign);
+
+        return buildUldtypeVO(toUpdate);
+    }
+
+    @Override
     public boolean exists(String id) {
         if (id == null) {
             throw new IllegalArgumentException("id is invalid");
@@ -174,6 +231,12 @@ public class UldtypeManagerBean implements UldtypeManager, UldtypeService {
         LOG.log(Level.FINER, "Return [{0}]", count);
 
         return count;
+    }
+
+    private UldtypeItemVO buildUldtypeItemVO(String uldtype) {
+        UldtypeItemVO uldtypeItemVO = new UldtypeItemVO(uldtype);
+
+        return uldtypeItemVO;
     }
 
     private UldtypeVO buildUldtypeVO(Uldtype uldtype) {

@@ -1,5 +1,6 @@
 package com.home.uldmasterdataservice.service;
 
+import com.home.uldmasterdataservice.boundary.UldtypeItemVO;
 import com.home.uldmasterdataservice.boundary.UldtypeVO;
 import java.util.List;
 import javax.ejb.Remote;
@@ -25,6 +26,34 @@ public interface UldtypeService {
      * @return a list of uldtypes
      */
     public List<UldtypeVO> getUldtypeContent(int offset, int count);
+
+    /**
+     * Get a List of uldtypes that are already assigned to a given shape.
+     *
+     * @param shape the shape to look after
+     *
+     * @return a list of uldtype items
+     */
+    public List<UldtypeItemVO> getUldtypesAssigned(String shape);
+
+    /**
+     * Get a List of uldtypes that are availavle for assignement to a given shape.
+     *
+     * @param shape the shape to look after
+     *
+     * @return a list of uldtype items
+     */
+    public List<UldtypeItemVO> getUldtypesAvailable(String shape);
+
+    /**
+     * Assign a shape to an uldtype.
+     *
+     * @param shape   the shape to assign to the uldtype
+     * @param uldtype the uldtype to update
+     *
+     * @return the VO of the updated uldtype
+     */
+    public UldtypeVO assignShape(String shape, String uldtype);
 
     /**
      * Get a uldtype by its Primary Key uldtype.
