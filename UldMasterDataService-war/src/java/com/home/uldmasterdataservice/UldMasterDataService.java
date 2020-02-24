@@ -1,6 +1,7 @@
 package com.home.uldmasterdataservice;
 
 import com.home.uldmasterdataservice.boundary.UldshapeVO;
+import com.home.uldmasterdataservice.boundary.UldtypeItemVO;
 import com.home.uldmasterdataservice.boundary.UldtypeVO;
 import com.home.uldmasterdataservice.service.UldshapeService;
 import com.home.uldmasterdataservice.service.UldtypeService;
@@ -11,6 +12,7 @@ import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.ws.rs.GET;
 import javax.ws.rs.OPTIONS;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -138,8 +140,8 @@ public class UldMasterDataService {
         if (uldshapeVO != null) {
             return Response.ok().entity("true").build();
         }
-        return Response.ok().entity("false").build();
 
+        return Response.ok().entity("false").build();
     }
 
     /**
@@ -159,8 +161,8 @@ public class UldMasterDataService {
         if (uldtypeVO != null) {
             return Response.ok().entity("true").build();
         }
-        return Response.ok().entity("false").build();
 
+        return Response.ok().entity("false").build();
     }
 
     /**
@@ -197,6 +199,72 @@ public class UldMasterDataService {
         Response response;
 
         response = Response.ok().entity(String.valueOf(val)).build();
+
+        return response;
+    }
+
+    /**
+     * Give a list of all uld types already assigned to a shape.
+     *
+     * @param shape the shape to look for
+     *
+     * @return the matching uld type list
+     */
+    @PermitAll
+    @GET
+    @Path("/assignedTypes/{shape}")
+    @Produces({MediaType.APPLICATION_XML})
+    public Response getAssignedTypes(@PathParam("shape") String shape) {
+        List<UldtypeItemVO> uldtypeItemList = uldtypeService.getUldtypesAssigned(shape);
+
+        GenericEntity<List<UldtypeItemVO>> entity
+                = new GenericEntity<List<UldtypeItemVO>>(new ArrayList(uldtypeItemList)) {
+        };
+
+        Response response = Response.ok(entity).build();
+
+        return response;
+    }
+
+    /**
+     * Give a list of all uld types already assigned to a shape.
+     *
+     * @param shape the shape to look for
+     *
+     * @return the matching uld type list
+     */
+    @PermitAll
+    @GET
+    @Path("/availableTypes/{shape}")
+    @Produces({MediaType.APPLICATION_XML})
+    public Response getAvailableTypes(@PathParam("shape") String shape) {
+        List<UldtypeItemVO> uldtypeItemList = uldtypeService.getUldtypesAvailable(shape);
+
+        GenericEntity<List<UldtypeItemVO>> entity
+                = new GenericEntity<List<UldtypeItemVO>>(new ArrayList(uldtypeItemList)) {
+        };
+
+        Response response = Response.ok(entity).build();
+
+        return response;
+    }
+
+    /**
+     * Assign a shape to an uldtype.
+     *
+     * @param shape   the shape to assign to the uldtype
+     * @param uldtype the uldtype to update
+     *
+     * @return the UldtypeVO of the updated uldtype
+     */
+    @PermitAll
+    @PUT
+    @Path("/assignShape/{shape}/{uldtype}")
+    @Produces({MediaType.APPLICATION_XML})
+    public Response assignShape(@PathParam("shape") String shape, @PathParam("uldtype") String uldtype) {
+        UldtypeVO uldtypeVO = uldtypeService.assignShape(shape, uldtype);
+
+        Response response = Response.ok().entity(uldtypeVO).build();
 
         return response;
     }
