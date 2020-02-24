@@ -15,16 +15,40 @@
         </h:head>
         <h:body>
             <h:form id="masterData">
-
                 <p:layout fullPage="true">
                     <p:layoutUnit position="west" size="245" header="#{lab.menuFrameTitle}" collapsible="true">
                         <ui:include src="include/navigation.xhtml" />
-                    </p:layoutUnit>>
+                    </p:layoutUnit>
 
-                    <p:layoutUnit position="center" resizable="true">
+                    <p:layoutUnit id="centerPanel" position="center" resizable="true">
+                        <h:panelGrid id="panelGrid" columns="2">
+                            <p:dataList value="#{uldShapeGridDisplay.uldShapeList}" var="uldShape" 
+                                        type="definition" itemType="none" style="width: 250px"
+                                        paginator="true" rows="5" pageLinks="3"
+                                        paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}">
+                                <f:facet name="header">
+                                    #{lab.shapeHeader}
+                                </f:facet>
+                                <h:panelGrid columns="2" columnClasses="logo,detail">
+                                    <p:graphicImage value="#{uldShapeDisplay.thumbnail}" width="150" height="90">
+                                        <f:param name="shape" value="#{uldShape.shape}" />
+                                    </p:graphicImage>
+                                    <p:commandLink title="#{lab.selectShapeText}" update="masterData:panelGrid">
+                                        <h:outputText value="#{uldShape.shape}" style="color:blue"/>
+                                        <f:setPropertyActionListener value="#{uldShape.shape}" target="#{uldTypesAssignShape.selectedShape}"/>
+                                    </p:commandLink>
+                                </h:panelGrid>
+                            </p:dataList>
+                            
+                            <h:panelGrid frame="box" id="picker">
+                                <f:facet name="header" class="leftheader">
+                                    #{lab.pickTypesHeader}
+                                </f:facet>
+                                <p:pickList id="pickList" value="#{uldTypesAssignShape.uldTypes}" var="uldTypes" itemLabel="#{uldTypes}" itemValue="#{uldTypes}"/>
+                            </h:panelGrid>
+                        </h:panelGrid>
                     </p:layoutUnit>
                 </p:layout>
-                
             </h:form>
         </h:body>
     </f:view>

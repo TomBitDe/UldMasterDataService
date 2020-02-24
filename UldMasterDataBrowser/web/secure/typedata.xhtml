@@ -31,53 +31,50 @@
                                 #{lab.typesTitle}
                             </f:facet>
 
-                            <p:column filterBy="#{uldType.uldtype}" headerText="Type" filterMatchMode="contains">
+                            <p:column filterBy="#{uldType.uldtype}" headerText="#{lab.typeHeader}" filterMatchMode="contains">
                                 <h:outputText value="#{uldType.uldtype}" />
                             </p:column>
 
-                            <p:column headerText="Shape">
+                            <p:column headerText="#{lab.shapeHeader}">
                                 <p:graphicImage value="#{uldTypeDisplay.thumbnail}" width="100" height="70">
                                     <f:param name="shape" value="#{uldType.shape.shape}" />
                                 </p:graphicImage>
                             </p:column>
 
-                            <p:column headerText="Description">
+                            <p:column headerText="#{lab.descrHeader}">
                                 <h:outputText value="#{uldType.descr}" />
                             </p:column>
-                            <p:column headerText="Door side">
+                            <p:column headerText="#{lab.doorsideHeader}">
                                 <h:outputText value="#{uldType.doorside}" />
                             </p:column>
-                            <p:column headerText="NEL Length">
+                            <p:column headerText="#{lab.nelLengthHeader}">
                                 <h:outputText value="#{uldType.nelleng}" />
                             </p:column>
-                            <p:column headerText="WEL Length">
+                            <p:column headerText="#{lab.welLengthHeader}">
                                 <h:outputText value="#{uldType.welleng}" />
                             </p:column>
-                            <p:column headerText="Tare weight">
+                            <p:column headerText="#{lab.tareWeightHeader}">
                                 <h:outputText value="#{uldType.tarewght}" />
                             </p:column>
-                            <p:column headerText="Theo. height">
+                            <p:column headerText="#{lab.theoHeightHeader}">
                                 <h:outputText value="#{uldType.theohght}" />
                             </p:column>
-                            <p:column headerText="Theo. length">
+                            <p:column headerText="#{lab.theoLengthHeader}">
                                 <h:outputText value="#{uldType.theoleng}" />
                             </p:column>
-                            <p:column headerText="Updated">
+                            <p:column headerText="#{lab.updatedHeader}">
                                 <h:outputText value="#{uldType.updated}" >
                                     <f:converter converterId = "DttmConverter" />
                                 </h:outputText>
                             </p:column>
-                            <p:column headerText="By">
+                            <p:column headerText="#{lab.updatedUserHeader}">
                                 <h:outputText value="#{uldType.updtuser}" />
                             </p:column>
                         </p:dataTable>
                     </p:layoutUnit>
-
                 </p:layout>
             </h:form>
         </h:body>
-
     </f:view>
-
 </html>
 

@@ -46,7 +46,8 @@
                             </p:panel>
 
                         </p:dataGrid>
-                        <p:dialog header="Shape Info" widgetVar="shapeDialog" modal="false" showEffect="fade" hideEffect="fade" resizable="false">
+                        
+                        <p:dialog header="Shape Info" widgetVar="shapeDialog" modal="false" showEffect="blind" hideEffect="explode" resizable="false">
                             <p:outputPanel id="shapeDetail" style="text-align:left;">
                                 <p:panelGrid  columns="6" rendered="#{not empty uldShapeDisplay.selectedShape}" columnClasses="label,value,label,value,label,value">
                                     <f:facet name="header">
