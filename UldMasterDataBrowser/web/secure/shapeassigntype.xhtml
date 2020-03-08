@@ -33,18 +33,24 @@
                                     <p:graphicImage value="#{uldShapeDisplay.thumbnail}" width="150" height="90">
                                         <f:param name="shape" value="#{uldShape.shape}" />
                                     </p:graphicImage>
+
                                     <p:commandLink title="#{lab.selectShapeText}" update="masterData:panelGrid">
                                         <h:outputText value="#{uldShape.shape}" style="color:blue"/>
                                         <f:setPropertyActionListener value="#{uldShape.shape}" target="#{uldTypesAssignShape.selectedShape}"/>
                                     </p:commandLink>
+                                    
                                 </h:panelGrid>
                             </p:dataList>
-                            
+
                             <h:panelGrid frame="box" id="picker">
                                 <f:facet name="header" class="leftheader">
-                                    #{lab.pickTypesHeader}
+                                    #{lab.pickTypesHeader} #{uldTypesAssignShape.selectedShape} #{lab.assignText}
                                 </f:facet>
+                                
                                 <p:pickList id="pickList" value="#{uldTypesAssignShape.uldTypes}" var="uldTypes" itemLabel="#{uldTypes}" itemValue="#{uldTypes}"/>
+                                
+                                <p:commandButton value="#{lab.buttonApply}" action="#{uldTypesAssignShape.applyChange}">
+                                </p:commandButton>
                             </h:panelGrid>
                         </h:panelGrid>
                     </p:layoutUnit>
