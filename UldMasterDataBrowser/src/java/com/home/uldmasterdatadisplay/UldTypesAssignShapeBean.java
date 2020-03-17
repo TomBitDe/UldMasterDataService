@@ -9,7 +9,11 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.GenericType;
+import javax.ws.rs.core.MultivaluedHashMap;
+import javax.ws.rs.core.MultivaluedMap;
+import javax.ws.rs.core.Response;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.primefaces.model.DualListModel;
@@ -111,15 +115,22 @@ public class UldTypesAssignShapeBean implements Serializable {
 
     public void applyChange() {
         if (selectedShape != null && !selectedShape.isEmpty()) {
-            String assignShapeUriTemplate = "http://localhost:8080/UldMasterDataService-war/rest/UldMasterDataService/assignShape/" + selectedShape.trim();
-            String assignShapeUri = "";
+            String assignShapeUri = "http://localhost:8080/UldMasterDataService-war/rest/UldMasterDataService";
+            String assignShapePath = "";
+            MultivaluedMap<String, String> formData = new MultivaluedHashMap<>();
+            Response response;
+
             try {
                 for (String uldtype : uldTypes.getTarget()) {
-                    assignShapeUri = assignShapeUriTemplate.concat("/" + uldtype);
-                    LOG.debug("RESTful call to [" + assignShapeUri + "]...");
+                    formData.clear();
+                    formData.add("shape", selectedShape.trim());
+                    formData.add("uldtype", uldtype);
+                    assignShapePath = "/assignShape/" + selectedShape.trim() + '/' + uldtype;
+                    LOG.debug("RESTful call to [" + assignShapeUri + assignShapePath + "]...");
 
-                    UldtypeItemVO item = jaxRsClient.target(assignShapeUri).request("application/xml").get(new GenericType<UldtypeItemVO>() {
-                    });
+                    response = jaxRsClient.target(assignShapeUri).path(assignShapePath).request().put(Entity.form(formData));
+
+                    LOG.debug("RESPONSE: " + response);
                 }
             }
             catch (Exception ex) {
