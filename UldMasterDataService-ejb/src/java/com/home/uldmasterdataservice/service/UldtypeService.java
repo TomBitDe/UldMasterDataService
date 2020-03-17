@@ -56,6 +56,16 @@ public interface UldtypeService {
     public UldtypeVO assignShape(String shape, String uldtype);
 
     /**
+     * Deassign a shape from an uldtype. This means assign shape "LDxx" to the uldtype.
+     *
+     * @param shape   the shape to deassign from the uldtype
+     * @param uldtype the uldtype to update
+     *
+     * @return the VO of the updated uldtype
+     */
+    public UldtypeVO deassignShape(String shape, String uldtype);
+
+    /**
      * Get a uldtype by its Primary Key uldtype.
      *
      * @param id the Primary Key (id) of the uldtype

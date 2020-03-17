@@ -199,7 +199,22 @@ public class UldtypeManagerBean implements UldtypeManager, UldtypeService {
         Uldtype toUpdate = getById(uldtype);
         Uldshape toAssign = uldshapeManager.getById(shape);
 
-        toUpdate.setShape(toAssign);
+        if (!toUpdate.getShape().equals(toAssign)) {
+            toUpdate.setShape(toAssign);
+        }
+
+        return buildUldtypeVO(toUpdate);
+    }
+
+    @Override
+    @TransactionAttribute(TransactionAttributeType.REQUIRED)
+    public UldtypeVO deassignShape(String shape, String uldtype) {
+        Uldtype toUpdate = getById(uldtype);
+        Uldshape toDeassign = uldshapeManager.getById(shape);
+
+        if (toUpdate.getShape().equals(toDeassign)) {
+            toUpdate.setShape(uldshapeManager.getById("LDxx"));
+        }
 
         return buildUldtypeVO(toUpdate);
     }

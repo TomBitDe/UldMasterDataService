@@ -270,6 +270,26 @@ public class UldMasterDataService {
     }
 
     /**
+     * Deassign a shape from an uldtype.
+     *
+     * @param shape   the shape to deassign from the uldtype
+     * @param uldtype the uldtype to update
+     *
+     * @return the UldtypeVO of the updated uldtype
+     */
+    @PermitAll
+    @PUT
+    @Path("/deassignShape/{shape}/{uldtype}")
+    @Produces({MediaType.APPLICATION_XML})
+    public Response deassignShape(@PathParam("shape") String shape, @PathParam("uldtype") String uldtype) {
+        UldtypeVO uldtypeVO = uldtypeService.deassignShape(shape, uldtype);
+
+        Response response = Response.ok().entity(uldtypeVO).build();
+
+        return response;
+    }
+
+    /**
      * Give a list of all supported service operations.
      *
      * @return a list of service operations
