@@ -115,8 +115,9 @@ public class UldTypesAssignShapeBean implements Serializable {
 
     public void applyChange() {
         if (selectedShape != null && !selectedShape.isEmpty()) {
-            String assignShapeUri = "http://localhost:8080/UldMasterDataService-war/rest/UldMasterDataService";
-            String assignShapePath = "";
+            String serviceUri = "http://localhost:8080/UldMasterDataService-war/rest/UldMasterDataService";
+            String assignShapePath;
+            String deassignShapePath;
             MultivaluedMap<String, String> formData = new MultivaluedHashMap<>();
             Response response;
 
@@ -126,15 +127,27 @@ public class UldTypesAssignShapeBean implements Serializable {
                     formData.add("shape", selectedShape.trim());
                     formData.add("uldtype", uldtype);
                     assignShapePath = "/assignShape/" + selectedShape.trim() + '/' + uldtype;
-                    LOG.debug("RESTful call to [" + assignShapeUri + assignShapePath + "]...");
+                    LOG.debug("RESTful call to [" + serviceUri + assignShapePath + "]...");
 
-                    response = jaxRsClient.target(assignShapeUri).path(assignShapePath).request().put(Entity.form(formData));
+                    response = jaxRsClient.target(serviceUri).path(assignShapePath).request().put(Entity.form(formData));
+
+                    LOG.debug("RESPONSE: " + response);
+                }
+
+                for (String uldtype : uldTypes.getSource()) {
+                    formData.clear();
+                    formData.add("shape", selectedShape.trim());
+                    formData.add("uldtype", uldtype);
+                    deassignShapePath = "/deassignShape/" + selectedShape.trim() + '/' + uldtype;
+                    LOG.debug("RESTful call to [" + serviceUri + deassignShapePath + "]...");
+
+                    response = jaxRsClient.target(serviceUri).path(deassignShapePath).request().put(Entity.form(formData));
 
                     LOG.debug("RESPONSE: " + response);
                 }
             }
             catch (Exception ex) {
-                LOG.error(assignShapeUri + " : " + ex.getMessage());
+                LOG.error(serviceUri + " : " + ex.getMessage());
             }
         }
     }
