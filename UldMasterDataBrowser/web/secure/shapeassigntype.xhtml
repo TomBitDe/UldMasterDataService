@@ -6,10 +6,11 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
     <f:view locale="#{facesContext.externalContext.requestLocale}" contentType="text/html">
+        <link rel="stylesheet" type="text/css" href="css/htmlbasic.css"/>
+        <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+        
         <h:head>
-            <link rel="stylesheet" type="text/css" href="css/htmlbasic.css"/>
             <f:facet name="first">
-                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
                 <title>#{lab.contentTitle}</title>
             </f:facet>
         </h:head>
@@ -21,7 +22,7 @@
                     </p:layoutUnit>
 
                     <p:layoutUnit id="centerPanel" position="center" resizable="true">
-                        <h:panelGrid id="panelGrid" columns="2">
+                        <p:panelGrid id="panelGrid" columns="2">
                             <p:dataList value="#{uldShapeGridDisplay.uldShapeList}" var="uldShape" 
                                         type="definition" itemType="none" style="width: 250px"
                                         paginator="true" rows="5" pageLinks="3"
@@ -42,16 +43,16 @@
                                 </h:panelGrid>
                             </p:dataList>
 
-                            <h:panelGrid frame="box" id="picker">
-                                <f:facet name="header" class="leftheader">
+                            <p:panelGrid id="picker" columns="1" style="margin: -318px 0px 0px 0px">
+                                <f:facet name="header">
                                     #{lab.pickTypesHeader} #{uldTypesAssignShape.selectedShape} #{lab.assignText}
                                 </f:facet>
                                 
                                 <p:pickList id="pickList" value="#{uldTypesAssignShape.uldTypes}" var="uldTypes" itemLabel="#{uldTypes}" itemValue="#{uldTypes}"/>
                                 
                                 <p:commandButton value="#{lab.buttonApply}" action="#{uldTypesAssignShape.applyChange}"/>
-                            </h:panelGrid>
-                        </h:panelGrid>
+                            </p:panelGrid>
+                        </p:panelGrid>
                     </p:layoutUnit>
                 </p:layout>
             </h:form>
