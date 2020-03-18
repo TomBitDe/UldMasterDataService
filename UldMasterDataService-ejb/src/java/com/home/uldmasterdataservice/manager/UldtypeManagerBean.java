@@ -12,8 +12,10 @@ import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.annotation.Resource;
 import javax.ejb.EJB;
 import javax.ejb.EJBException;
+import javax.ejb.SessionContext;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
@@ -30,6 +32,9 @@ public class UldtypeManagerBean implements UldtypeManager, UldtypeService {
 
     @EJB
     private UldshapeManager uldshapeManager;
+
+    @Resource
+    private SessionContext context;
 
     @PersistenceContext
     private EntityManager em;
@@ -201,6 +206,8 @@ public class UldtypeManagerBean implements UldtypeManager, UldtypeService {
 
         if (!toUpdate.getShape().equals(toAssign)) {
             toUpdate.setShape(toAssign);
+            toUpdate.setUpdtdttm(new Timestamp(System.currentTimeMillis()));
+            toUpdate.setUpdtuser(context.getCallerPrincipal().getName());
         }
 
         return buildUldtypeVO(toUpdate);
@@ -214,6 +221,8 @@ public class UldtypeManagerBean implements UldtypeManager, UldtypeService {
 
         if (toUpdate.getShape().equals(toDeassign)) {
             toUpdate.setShape(uldshapeManager.getById("LDxx"));
+            toUpdate.setUpdtdttm(new Timestamp(System.currentTimeMillis()));
+            toUpdate.setUpdtuser(context.getCallerPrincipal().getName());
         }
 
         return buildUldtypeVO(toUpdate);
