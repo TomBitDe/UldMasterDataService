@@ -17,6 +17,7 @@
  * - getAssignedTypes (GET http://localhost:8080/UldMasterDataService-war/rest/UldMasterDataService/assignedTypes/LD3)<br>
  * - getAvailableTypes (GET http://localhost:8080/UldMasterDataService-war/rest/UldMasterDataService/availableTypes/LD3)<br>
  * - assignShape (PUT http://localhost:8080/UldMasterDataService-war/rest/UldMasterDataService/assignShape/LD3/AKE)<br>
+ * - deassignShape (PUT http://localhost:8080/UldMasterDataService-war/rest/UldMasterDataService/deassignShape/LD3/AKE)<br>
  * <br>
  * The test data in the database support the following:<br><br>
  * - uldshapes are LD3, LD2, M6, Demi and more.<br>

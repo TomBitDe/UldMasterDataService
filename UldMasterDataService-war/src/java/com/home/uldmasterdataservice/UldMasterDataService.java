@@ -270,7 +270,7 @@ public class UldMasterDataService {
     }
 
     /**
-     * Deassign a shape from an uldtype.
+     * Deassign a shape from an uldtype. Means to assign shape LDxx as replacement.
      *
      * @param shape   the shape to deassign from the uldtype
      * @param uldtype the uldtype to update

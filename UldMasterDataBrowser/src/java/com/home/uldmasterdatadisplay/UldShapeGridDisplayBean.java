@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.core.GenericType;
@@ -17,7 +17,7 @@ import org.apache.logging.log4j.Logger;
  * Uld Shape grid data display.
  */
 @ManagedBean(name = "uldShapeGridDisplay")
-@SessionScoped
+@ViewScoped
 public class UldShapeGridDisplayBean implements Serializable {
     /**
      * Needed for proper serializable implementation.

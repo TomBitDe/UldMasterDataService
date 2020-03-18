@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<jpa:entity-mappings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:java="http://jcp.org/en/jsr/detail?id=270" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:jpa="http://java.sun.com/xml/ns/persistence/orm" v="5.2" status="GENERATED" persistenceUnitName="DEFAULT_PU" sm="false" id="_15521451005391" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm orm_2_1.xsd">
-    <jpa:entity abs="false" class="Uldshape" v="true" xre="false" m="false" rootElement="_15521451005391" id="_15521451033362">
+<jpa:entity-mappings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:java="http://jcp.org/en/jsr/detail?id=270" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:jpa="http://java.sun.com/xml/ns/persistence/orm" v="5.2" rws="_15844798300641" cws="_15844798300641" persistenceUnitName="DEFAULT_PU" sm="false" xs="false" id="_15521451005391" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm orm_2_1.xsd">
+    <jpa:entity compositePrimaryKeyClass="UldshapePK" abs="false" class="Uldshape" v="true" xre="false" m="false" rootElement="_15521451005391" id="_15521451033362">
         <jpa:attributes>
             <jpa:basic optional="false" attribute-type="String" v="true" am="PRIVATE" name="descr" jbt="false" id="_15521451036954">
                 <jpa:column name="DESCR" unique="false" nullable="true" insertable="true" updatable="true"/>
@@ -64,7 +64,7 @@
         </jpa:nq>
         <jpa:table name="ULDSHAPE"/>
     </jpa:entity>
-    <jpa:entity abs="false" class="Uldtype" v="true" xre="false" m="false" rootElement="_15521451005391" id="_155214510403921">
+    <jpa:entity compositePrimaryKeyClass="UldtypePK" abs="false" class="Uldtype" v="true" xre="false" m="false" rootElement="_15521451005391" id="_155214510403921">
         <jpa:attributes>
             <jpa:basic optional="false" attribute-type="String" v="true" am="PRIVATE" name="descr" jbt="false" id="_155214510407023">
                 <jpa:column name="DESCR" unique="false" nullable="true" insertable="true" updatable="true"/>
@@ -107,4 +107,10 @@
         </jpa:nq>
         <jpa:table name="ULDTYPE"/>
     </jpa:entity>
+    <jpa:wsl>
+        <jpa:ws n="Main" id="_15844798300641">
+            <i ref="_155214510403921" x="32" y="32"/>
+            <i ref="_15521451033362" x="344" y="32"/>
+        </jpa:ws>
+    </jpa:wsl>
 </jpa:entity-mappings>
