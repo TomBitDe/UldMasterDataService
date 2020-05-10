@@ -99,7 +99,7 @@ public class UldtypeLoader {
                 iStmt.setInt(11, uldtypeVO.getWelleng());
 
                 // This is outside the UldtypeVO
-                iStmt.setString(12, line.substring(35, 39).replaceAll("'", "''").trim());
+                iStmt.setString(12, line.substring(35, 40).replaceAll("'", "''").trim());
 
                 // execute insert SQL stetement
                 iStmt.executeUpdate();
@@ -145,14 +145,14 @@ public class UldtypeLoader {
 
         uldtype.setUldtype(line.substring(0, 3).replaceAll("'", "''").trim());
         uldtype.setDescr(line.substring(4, 34).replaceAll("'", "''").trim());
-        uldtype.setTheoleng(Integer.parseInt(line.substring(40, 42).trim()));
-        uldtype.setTheohght(Integer.parseInt(line.substring(43, 45).trim()));
-        uldtype.setTarewght(Integer.parseInt(line.substring(46, 48).trim()));
-        uldtype.setNelleng(Integer.parseInt(line.substring(49, 51).trim()));
-        uldtype.setWelleng(Integer.parseInt(line.substring(52, 54).trim()));
-        uldtype.setDoorside(Integer.parseInt(line.substring(55, 57).trim()));
-        uldtype.setUpdated(line.substring(58, 72).replaceAll("'", "''").trim());
-        uldtype.setUpdtuser(line.substring(73, 87).replaceAll("'", "''").trim());
+        uldtype.setTheoleng(Integer.parseInt(line.substring(41, 43).trim()));
+        uldtype.setTheohght(Integer.parseInt(line.substring(44, 46).trim()));
+        uldtype.setTarewght(Integer.parseInt(line.substring(47, 49).trim()));
+        uldtype.setNelleng(Integer.parseInt(line.substring(50, 52).trim()));
+        uldtype.setWelleng(Integer.parseInt(line.substring(53, 55).trim()));
+        uldtype.setDoorside(Integer.parseInt(line.substring(56, 58).trim()));
+        uldtype.setUpdated(line.substring(59, 73).replaceAll("'", "''").trim());
+        uldtype.setUpdtuser(line.substring(74, 88).replaceAll("'", "''").trim());
 
         LOG.finer(uldtype.toString());
 
